@@ -10,3 +10,13 @@ export type AppStackParams = {
   OnboardingPlatformsSelectScreen: undefined;
   AppTabs: undefined;
 };
+
+export type SettingsPlatform = {
+  id: number;
+  name: string;
+};
+
+export type SettingsGenre = {
+  id: number;
+  name: string;
+};

@@ -1,22 +1,21 @@
 import React, { useContext } from "react";
 import { useTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ActivityIndicator, View } from "react-native";
 
 import { AppStackParams } from "../types";
 import { AppTabs } from "./AppTabs";
+import { SettingsContext } from "../context/SettingsContext";
 
 import OnboardingGenresSelectScreen from "../screens/Onboarding/OnboardingGenresSelectScreen";
 import OnboardingPlatformsSelectScreen from "../screens/Onboarding/OnboardingPlatformsSelectScreen";
 import OnboardingLandingScreen from "../screens/Onboarding/OnboardingLandingScreen";
 
-import { ActivityIndicator, View } from "react-native";
-
 const Stack = createNativeStackNavigator<AppStackParams>();
 
 export const AppStack = () => {
   const { colors } = useTheme();
-  const isFirstVisit = true;
-  const isFirstVisitLoading = false;
+  const { isFirstVisit, isFirstVisitLoading } = useContext(SettingsContext);
 
   if (isFirstVisitLoading) {
     return (
