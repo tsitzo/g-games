@@ -11,6 +11,9 @@ import OnboardingGenresSelectScreen from "../screens/Onboarding/OnboardingGenres
 import OnboardingPlatformsSelectScreen from "../screens/Onboarding/OnboardingPlatformsSelectScreen";
 import OnboardingLandingScreen from "../screens/Onboarding/OnboardingLandingScreen";
 
+import GenresSelectScreen from "../screens/Main/GenresSelectScreen";
+import PlatformsSelectScreen from "../screens/Main/PlatformsSelectScreen";
+
 const Stack = createNativeStackNavigator<AppStackParams>();
 
 export const AppStack = () => {
@@ -60,6 +63,22 @@ export const AppStack = () => {
             name="AppTabs"
             component={AppTabs}
             options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="GenresSelectScreen"
+            component={GenresSelectScreen}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Genres",
+            }}
+          />
+          <Stack.Screen
+            name="PlatformsSelectScreen"
+            component={PlatformsSelectScreen}
+            options={{
+              headerLargeTitle: true,
+              headerTitle: "Platforms",
+            }}
           />
         </>
       )}

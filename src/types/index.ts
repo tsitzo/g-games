@@ -9,6 +9,8 @@ export type AppStackParams = {
   OnboardingGenresSelectScreen: undefined;
   OnboardingPlatformsSelectScreen: undefined;
   AppTabs: undefined;
+  GenresSelectScreen: undefined;
+  PlatformsSelectScreen: undefined;
 };
 
 export type SettingsPlatform = {
