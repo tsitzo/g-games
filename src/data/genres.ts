@@ -1,6 +1,6 @@
-import { SettingsGenre } from "../types";
+import { Genre } from "../types";
 
-export const genres: SettingsGenre[] = [
+export const genres: Genre[] = [
   {
     id: 4,
     name: "Fighting",

@@ -5,11 +5,11 @@ import { Ionicons } from "@expo/vector-icons";
 
 import Typography from "../Typography";
 import { SettingsContext } from "../../context/SettingsContext";
-import { SettingsPlatform } from "../../types";
+import { Platform } from "../../types";
 import { styles } from "./styles";
 
 interface IPlatformSelectionTileProps {
-  platform: SettingsPlatform;
+  platform: Platform;
 }
 
 const PlatformSelectionTile: FC<IPlatformSelectionTileProps> = ({

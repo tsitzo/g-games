@@ -6,11 +6,11 @@ import { Ionicons } from "@expo/vector-icons";
 import Typography from "../Typography";
 
 import { SettingsContext } from "../../context/SettingsContext";
-import { SettingsGenre } from "../../types";
+import { Genre } from "../../types";
 import { styles } from "./styles";
 
 interface IGenresSelectionTileProps {
-  genre: SettingsGenre;
+  genre: Genre;
 }
 
 const GenresSelectionTile: FC<IGenresSelectionTileProps> = ({ genre }) => {

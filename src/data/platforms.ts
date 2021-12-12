@@ -1,6 +1,6 @@
-import { SettingsPlatform } from "../types";
+import { Platform } from "../types";
 
-export const platforms: SettingsPlatform[] = [
+export const platforms: Platform[] = [
   {
     id: 158,
     name: "Commodore CDTV",

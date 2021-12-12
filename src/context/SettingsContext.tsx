@@ -1,20 +1,20 @@
 import React, { FC, useState, createContext, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { platforms } from "../data/platforms";
-import { SettingsGenre, SettingsPlatform } from "../types";
+import { Genre, Platform } from "../types";
 import { genres } from "../data/genres";
 
 type SettingsContextState = {
   isFirstVisitLoading: boolean;
   isFirstVisit: boolean;
-  platforms: SettingsPlatform[];
+  platforms: Platform[];
   selectedPlatforms: number[];
-  genres: SettingsGenre[];
+  genres: Genre[];
   selectedGenres: number[];
-  addPlatform: (platform: SettingsPlatform) => void;
-  removePlatform: (platform: SettingsPlatform) => void;
-  addGenre: (genre: SettingsGenre) => void;
-  removeGenre: (genre: SettingsGenre) => void;
+  addPlatform: (platform: Platform) => void;
+  removePlatform: (platform: Platform) => void;
+  addGenre: (genre: Genre) => void;
+  removeGenre: (genre: Genre) => void;
   setFirstVisitFalse: () => void;
 };
 
@@ -43,7 +43,7 @@ export const SettingsContextProvider: FC = ({ children }) => {
     contextDefaultValue.isFirstVisit
   );
 
-  const [platforms, setPlatforms] = useState<SettingsPlatform[]>(
+  const [platforms, setPlatforms] = useState<Platform[]>(
     contextDefaultValue.platforms
   );
 
@@ -51,9 +51,7 @@ export const SettingsContextProvider: FC = ({ children }) => {
     contextDefaultValue.selectedPlatforms
   );
 
-  const [genres, setGenres] = useState<SettingsGenre[]>(
-    contextDefaultValue.genres
-  );
+  const [genres, setGenres] = useState<Genre[]>(contextDefaultValue.genres);
 
   const [selectedGenres, setSelectedGenres] = useState<number[]>(
     contextDefaultValue.selectedGenres
@@ -63,23 +61,23 @@ export const SettingsContextProvider: FC = ({ children }) => {
     setIsFirstVisit(false);
   };
 
-  const addPlatform = (platform: SettingsPlatform) => {
+  const addPlatform = (platform: Platform) => {
     if (selectedPlatforms.length < 10)
       setSelectedPlatforms([...selectedPlatforms, platform.id]);
   };
 
-  const removePlatform = (platform: SettingsPlatform) => {
+  const removePlatform = (platform: Platform) => {
     if (selectedPlatforms.length > 1) {
       setSelectedPlatforms(selectedPlatforms.filter((p) => p !== platform.id));
     } else alert("You need to have at least 1 platform selected");
   };
 
-  const addGenre = (genre: SettingsGenre) => {
+  const addGenre = (genre: Genre) => {
     if (selectedGenres.length < 5)
       setSelectedGenres([...selectedGenres, genre.id]);
   };
 
-  const removeGenre = (genre: SettingsGenre) => {
+  const removeGenre = (genre: Genre) => {
     if (selectedGenres.length > 1) {
       setSelectedGenres(selectedGenres.filter((g) => g !== genre.id));
     } else alert("You need to have at least 1 genre selected");
