@@ -26,6 +26,10 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   screenshotWrapper: {
+    width: 192 * 1.1,
+    height: 108 * 1.1,
+  },
+  videoWrapper: {
     width: 192,
     height: 108,
   },

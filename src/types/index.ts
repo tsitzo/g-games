@@ -69,6 +69,11 @@ export type SimilarGame = {
   cover?: Cover;
 };
 
+export type Video = {
+  id: number;
+  video_id: string;
+};
+
 export type Game = {
   id: number;
   cover?: Cover;
@@ -84,4 +89,5 @@ export type Game = {
   artworks?: Artwork[];
   websites?: Website[];
   aggregated_rating?: number;
+  videos?: Video[];
 };

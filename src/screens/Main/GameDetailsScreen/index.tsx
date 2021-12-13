@@ -1,26 +1,26 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import {
   View,
-  Text,
   ActivityIndicator,
   Dimensions,
   FlatList,
   TouchableOpacity,
 } from "react-native";
+import moment from "moment";
 import { RouteProp, useTheme } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 
 import { AppStackParams, Game } from "../../../types";
 
-import { styles } from "./styles";
 import Typography from "../../../components/Typography";
-import { api } from "../../../api";
-import moment from "moment";
 import Spacer from "../../../components/Spacer";
-import { getDevs, getPublishers } from "../../../utils";
 import ScreenshotImage from "../../../components/ScreenshotImage";
 import CoverImageCard from "../../../components/CoverImageCard";
+import { styles } from "./styles";
+import { api } from "../../../api";
+import { getDevs, getPublishers } from "../../../utils";
+import VideoThumbnail from "../../../components/VideoThumbnail";
 
 interface IGameDetailsScreenProps {
   navigation: NativeStackNavigationProp<AppStackParams, "GameDetailsScreen">;
@@ -175,6 +175,32 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
                   >
                     <ScreenshotImage screenshot={item} />
                   </TouchableOpacity>
+                )}
+              />
+            </>
+          )}
+
+          {gameDetails?.videos && (
+            <>
+              <Spacer y={20} />
+
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={gameDetails.videos}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item, index }) => (
+                  <View
+                    style={[
+                      styles.videoWrapper,
+                      {
+                        marginRight:
+                          index === gameDetails.videos!.length - 1 ? 0 : 10,
+                      },
+                    ]}
+                  >
+                    <VideoThumbnail videoID={item.video_id} />
+                  </View>
                 )}
               />
             </>
