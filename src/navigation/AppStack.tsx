@@ -13,6 +13,8 @@ import OnboardingLandingScreen from "../screens/Onboarding/OnboardingLandingScre
 
 import GenresSelectScreen from "../screens/Main/GenresSelectScreen";
 import PlatformsSelectScreen from "../screens/Main/PlatformsSelectScreen";
+import GameDetailsScreen from "../screens/Main/GameDetailsScreen";
+import SeeMoreGamesScreen from "../screens/Main/SeeMoreGamesScreen";
 
 const Stack = createNativeStackNavigator<AppStackParams>();
 
@@ -79,6 +81,23 @@ export const AppStack = () => {
               headerLargeTitle: true,
               headerTitle: "Platforms",
             }}
+          />
+          <Stack.Screen
+            name="GameDetailsScreen"
+            component={GameDetailsScreen}
+            options={{
+              headerShown: false,
+              presentation: "modal",
+            }}
+          />
+          <Stack.Screen
+            name="SeeMoreGamesScreen"
+            component={SeeMoreGamesScreen}
+            options={({ route }) => ({
+              headerLargeTitle: true,
+              headerTitle: route.params.name,
+              headerBackTitle: "Back",
+            })}
           />
         </>
       )}

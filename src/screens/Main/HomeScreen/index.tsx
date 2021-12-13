@@ -131,15 +131,23 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
         contentContainerStyle={{ paddingBottom: 20 }}
         showsVerticalScrollIndicator={false}
       >
+        <Spacer y={10} />
+
         {featuredGames && (
           <Carousel
             data={featuredGames.slice(0, 9)}
             layout="default"
             itemWidth={Dimensions.get("screen").width * 0.85}
             sliderWidth={Dimensions.get("screen").width}
-            inactiveSlideShift={-10}
+            inactiveSlideShift={0}
             renderItem={({ item }) => (
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("GameDetailsScreen", {
+                    id: item.id,
+                  })
+                }
+              >
                 <ArtworkImageCard game={item} />
               </TouchableOpacity>
             )}
@@ -149,12 +157,21 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
         <View style={styles.flatlistsWrapper}>
           {reccomendedGames && (
             <>
-              <Spacer y={10} />
+              <Spacer y={20} />
               <View style={styles.row}>
                 <Typography variant="bold" size={22}>
                   For you
                 </Typography>
-                <Typography color="primary" size={16}>
+                <Typography
+                  color="primary"
+                  size={16}
+                  onPress={() =>
+                    navigation.push("SeeMoreGamesScreen", {
+                      name: "For you",
+                      games: reccomendedGames,
+                    })
+                  }
+                >
                   See More
                 </Typography>
               </View>
@@ -166,6 +183,11 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
                 horizontal
                 renderItem={({ item, index }) => (
                   <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("GameDetailsScreen", {
+                        id: item.id,
+                      })
+                    }
                     style={{
                       marginRight:
                         index === reccomendedGames.slice(0, 9).length - 1
@@ -187,7 +209,16 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
                 <Typography variant="bold" size={22}>
                   Upcoming{" "}
                 </Typography>
-                <Typography color="primary" size={16}>
+                <Typography
+                  color="primary"
+                  size={16}
+                  onPress={() =>
+                    navigation.push("SeeMoreGamesScreen", {
+                      name: "Upcoming",
+                      games: upcomingGames,
+                    })
+                  }
+                >
                   See More
                 </Typography>
               </View>
@@ -199,6 +230,11 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
                 horizontal
                 renderItem={({ item, index }) => (
                   <TouchableOpacity
+                    onPress={() =>
+                      navigation.navigate("GameDetailsScreen", {
+                        id: item.id,
+                      })
+                    }
                     style={{
                       marginRight:
                         index === upcomingGames.slice(0, 9).length - 1 ? 0 : 10,
