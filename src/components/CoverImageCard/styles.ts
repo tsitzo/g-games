@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     overflow: "hidden",
   },
+
   placeHolderImage: {
     justifyContent: "center",
     alignSelf: "center",
@@ -17,4 +18,5 @@ export const styles = StyleSheet.create({
     height: "100%",
   },
   image: { width: "100%", height: "100%", zIndex: 0 },
+  imageStatic: { height: 30, width: 30 },
 });

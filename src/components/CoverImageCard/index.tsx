@@ -22,18 +22,26 @@ const CoverImageCard: FC<ICoverImageCard> = ({ game }) => {
           <ActivityIndicator color={colors.primary} />
         </View>
       )}
-      <Image
-        resizeMode="cover"
-        source={{
-          uri: `https:${game?.cover?.url?.replace(
-            "t_thumb",
-            "t_cover_big_2x"
-          )}`,
-        }}
-        style={styles.image}
-        onLoadStart={() => setIsLoading(true)}
-        onLoadEnd={() => setIsLoading(false)}
-      />
+      {game.cover ? (
+        <Image
+          resizeMode="cover"
+          source={{
+            uri: `https:${game?.cover?.url?.replace(
+              "t_thumb",
+              "t_cover_big_2x"
+            )}`,
+          }}
+          style={styles.image}
+          onLoadStart={() => setIsLoading(true)}
+          onLoadEnd={() => setIsLoading(false)}
+        />
+      ) : (
+        <View
+          style={[styles.placeHolderImage, { backgroundColor: colors.card }]}
+        >
+          <ActivityIndicator color={colors.primary} />
+        </View>
+      )}
     </View>
   );
 };

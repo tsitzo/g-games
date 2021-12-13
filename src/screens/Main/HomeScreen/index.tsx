@@ -87,14 +87,14 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
     setIsLoading(false);
   };
 
-  if (selectedPlatforms.length > 0 && selectedGenres.length > 0) {
-    useEffect(() => {
+  useEffect(() => {
+    if (selectedPlatforms.length > 0 && selectedGenres.length > 0) {
       getReccomendedGames(
         selectedPlatforms.join(","),
         selectedGenres.join(",")
       );
-    }, [selectedGenres, selectedPlatforms]);
-  }
+    }
+  }, [selectedGenres, selectedPlatforms]);
 
   useEffect(() => {
     getFeaturedGames();
