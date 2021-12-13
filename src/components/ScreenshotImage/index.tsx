@@ -1,15 +1,15 @@
 import { useTheme } from "@react-navigation/native";
 import React, { FC, useState } from "react";
 import { View, Image, ActivityIndicator } from "react-native";
-import { Game } from "../../types";
+import { Screenshot } from "../../types";
 
 import { styles } from "./styles";
 
-interface ICoverImageCardProps {
-  game: Game;
+interface IScreenshotImageProps {
+  screenshot: Screenshot;
 }
 
-const CoverImageCard: FC<ICoverImageCardProps> = ({ game }) => {
+const ScreenshotImage: FC<IScreenshotImageProps> = ({ screenshot }) => {
   const { colors } = useTheme();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -22,13 +22,13 @@ const CoverImageCard: FC<ICoverImageCardProps> = ({ game }) => {
           <ActivityIndicator color={colors.primary} />
         </View>
       )}
-      {game.cover ? (
+      {screenshot.url ? (
         <Image
           resizeMode="cover"
           source={{
-            uri: `https:${game?.cover?.url?.replace(
+            uri: `https:${screenshot?.url?.replace(
               "t_thumb",
-              "t_cover_big_2x"
+              "t_screenshot_big_2x"
             )}`,
           }}
           style={styles.image}
@@ -46,4 +46,4 @@ const CoverImageCard: FC<ICoverImageCardProps> = ({ game }) => {
   );
 };
 
-export default CoverImageCard;
+export default ScreenshotImage;

@@ -5,11 +5,11 @@ import { Game } from "../../types";
 
 import { styles } from "./styles";
 
-interface IArtworkImageCard {
+interface IArtworkImageCardProps {
   game: Game;
 }
 
-const ArtworkImageCard: FC<IArtworkImageCard> = ({ game }) => {
+const ArtworkImageCard: FC<IArtworkImageCardProps> = ({ game }) => {
   const { colors } = useTheme();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

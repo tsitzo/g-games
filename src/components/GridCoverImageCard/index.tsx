@@ -5,11 +5,11 @@ import { Game } from "../../types";
 
 import { styles } from "./styles";
 
-interface IGridCoverImageCard {
+interface IGridCoverImageCardProps {
   game: Game;
 }
 
-const GridCoverImageCard: FC<IGridCoverImageCard> = ({ game }) => {
+const GridCoverImageCard: FC<IGridCoverImageCardProps> = ({ game }) => {
   const { colors } = useTheme();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

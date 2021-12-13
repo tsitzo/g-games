@@ -1,5 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from "react";
-import { View, Text, ActivityIndicator, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  Dimensions,
+  FlatList,
+  TouchableOpacity,
+} from "react-native";
 import { RouteProp, useTheme } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
@@ -12,6 +19,8 @@ import { api } from "../../../api";
 import moment from "moment";
 import Spacer from "../../../components/Spacer";
 import { getDevs, getPublishers } from "../../../utils";
+import ScreenshotImage from "../../../components/ScreenshotImage";
+import CoverImageCard from "../../../components/CoverImageCard";
 
 interface IGameDetailsScreenProps {
   navigation: NativeStackNavigationProp<AppStackParams, "GameDetailsScreen">;
@@ -139,6 +148,100 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
                   : "-"}
               </Typography>
             </View>
+          )}
+
+          <Spacer y={10} />
+
+          {gameDetails?.screenshots && (
+            <>
+              <Spacer y={20} />
+
+              <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={gameDetails.screenshots}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item, index }) => (
+                  <TouchableOpacity
+                    style={[
+                      styles.screenshotWrapper,
+                      {
+                        marginRight:
+                          index === gameDetails.screenshots!.length - 1
+                            ? 0
+                            : 10,
+                      },
+                    ]}
+                  >
+                    <ScreenshotImage screenshot={item} />
+                  </TouchableOpacity>
+                )}
+              />
+            </>
+          )}
+
+          {gameDetails?.similar_games && (
+            <>
+              <Spacer y={20} />
+              <Typography variant="bold">Similar Games</Typography>
+              <Spacer y={20} />
+              <FlatList
+                showsHorizontalScrollIndicator={false}
+                data={gameDetails.similar_games}
+                horizontal
+                renderItem={({ item, index }) => (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.push("GameDetailsScreen", {
+                        id: item.id,
+                      })
+                    }
+                    style={[
+                      styles.coverShadow,
+                      {
+                        marginRight:
+                          index === gameDetails.similar_games!.length - 1
+                            ? 0
+                            : 10,
+                      },
+                    ]}
+                  >
+                    <CoverImageCard game={item} />
+                  </TouchableOpacity>
+                )}
+              />
+            </>
+          )}
+
+          {gameDetails?.dlcs && (
+            <>
+              <Spacer y={10} />
+              <Typography color="subtext">DLCs</Typography>
+              <Spacer y={20} />
+              <FlatList
+                showsHorizontalScrollIndicator={false}
+                data={gameDetails.dlcs}
+                horizontal
+                renderItem={({ item, index }) => (
+                  <TouchableOpacity
+                    onPress={() =>
+                      navigation.push("GameDetailsScreen", {
+                        id: item.id,
+                      })
+                    }
+                    style={[
+                      styles.coverShadow,
+                      {
+                        marginRight:
+                          index === gameDetails.dlcs!.length - 1 ? 0 : 10,
+                      },
+                    ]}
+                  >
+                    <CoverImageCard game={item} />
+                  </TouchableOpacity>
+                )}
+              />
+            </>
           )}
         </BottomSheetScrollView>
       </BottomSheet>
