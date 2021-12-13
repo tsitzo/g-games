@@ -79,7 +79,7 @@ export type Game = {
   similar_games?: SimilarGame[];
   dlcs?: DLC[];
   summary?: string;
-  artworks?: Artwork;
+  artworks?: Artwork[];
   websites?: Website[];
   aggregated_rating?: number;
 };
