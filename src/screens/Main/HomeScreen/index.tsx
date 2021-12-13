@@ -43,7 +43,7 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
     try {
       const response = await api.post(
         "/games",
-        `fields name, cover.url, name; where platforms = (${platforms}) & genres = (${genres}) & artworks != null; limit 30;`
+        `fields name, cover.url, name; where platforms = (${platforms}) & genres = (${genres}) & cover != null & artworks != null; limit 30;`
       );
 
       setReccomendedGames(response.data);
@@ -147,6 +147,7 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
                     id: item.id,
                   })
                 }
+                style={styles.coverShadow}
               >
                 <ArtworkImageCard game={item} />
               </TouchableOpacity>
@@ -188,12 +189,15 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
                         id: item.id,
                       })
                     }
-                    style={{
-                      marginRight:
-                        index === reccomendedGames.slice(0, 9).length - 1
-                          ? 0
-                          : 10,
-                    }}
+                    style={[
+                      styles.coverShadow,
+                      {
+                        marginRight:
+                          index === reccomendedGames.slice(0, 9).length - 1
+                            ? 0
+                            : 10,
+                      },
+                    ]}
                   >
                     <CoverImageCard game={item} />
                   </TouchableOpacity>
@@ -235,10 +239,15 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
                         id: item.id,
                       })
                     }
-                    style={{
-                      marginRight:
-                        index === upcomingGames.slice(0, 9).length - 1 ? 0 : 10,
-                    }}
+                    style={[
+                      styles.coverShadow,
+                      {
+                        marginRight:
+                          index === upcomingGames.slice(0, 9).length - 1
+                            ? 0
+                            : 10,
+                      },
+                    ]}
                   >
                     <CoverImageCard game={item} />
                   </TouchableOpacity>
