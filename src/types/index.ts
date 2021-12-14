@@ -2,6 +2,7 @@ export type AppTabsParams = {
   HomeScreen: undefined;
   CollectionsScreen: undefined;
   SettingsScreen: undefined;
+  SearchScreen: undefined;
 };
 
 export type AppStackParams = {
@@ -15,6 +16,10 @@ export type AppStackParams = {
   SeeMoreGamesScreen: { games: Game[]; name: string };
   SeeMoreCollectionsGamesScreen: {
     collection: string;
+  };
+  SearchResultsScreen: {
+    name: string;
+    query: string;
   };
 };
 

@@ -12,10 +12,12 @@ import CollectionsScreen from "../screens/Main/CollectionsScreen";
 import SettingsScreen from "../screens/Main/SettingsScreen";
 
 import { AppTabsParams } from "../types";
+import SearchScreen from "../screens/Main/SearchScreen";
 
 const HomeStack = createNativeStackNavigator();
 const CollectionsStack = createNativeStackNavigator();
 const SettingsStack = createNativeStackNavigator();
+const SearchStack = createNativeStackNavigator();
 
 const HomeScreenStack = () => {
   const { colors } = useTheme();
@@ -55,6 +57,25 @@ const CollectionsScreenStack = () => {
         component={CollectionsScreen}
       />
     </CollectionsStack.Navigator>
+  );
+};
+
+const SearchScreenStack = () => {
+  const { colors } = useTheme();
+
+  return (
+    <SearchStack.Navigator
+      screenOptions={{
+        headerLargeTitle: true,
+        headerTransparent: true,
+        headerLargeStyle: { backgroundColor: colors.background },
+        headerStyle: { backgroundColor: colors.card },
+        headerShadowVisible: false,
+        headerLargeTitleStyle: { fontSize: 32 },
+      }}
+    >
+      <SearchStack.Screen name="Search" component={SearchScreen} />
+    </SearchStack.Navigator>
   );
 };
 
@@ -100,6 +121,22 @@ export const AppTabs = () => {
           tabBarIcon: ({ color, focused }) => (
             <Ionicons
               name={focused ? "md-home" : "md-home-outline"}
+              size={20}
+              color={color}
+            />
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="SearchScreen"
+        component={SearchScreenStack}
+        options={{
+          tabBarLabel: "Search",
+
+          tabBarIcon: ({ color, focused }) => (
+            <Ionicons
+              name={focused ? "md-search" : "md-search-outline"}
               size={20}
               color={color}
             />

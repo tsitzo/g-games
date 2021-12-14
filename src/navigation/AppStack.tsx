@@ -16,6 +16,7 @@ import PlatformsSelectScreen from "../screens/Main/PlatformsSelectScreen";
 import GameDetailsScreen from "../screens/Main/GameDetailsScreen";
 import SeeMoreGamesScreen from "../screens/Main/SeeMoreGamesScreen";
 import SeeMoreCollectionsGamesScreen from "../screens/Main/SeeMoreCollectionsGamesScreen";
+import SearchResultsScreen from "../screens/Main/SearchResultsScreen";
 
 const Stack = createNativeStackNavigator<AppStackParams>();
 
@@ -97,7 +98,6 @@ export const AppStack = () => {
             options={({ route }) => ({
               headerLargeTitle: true,
               headerTitle: route.params.name,
-              // headerBackTitle: "Back",
               presentation: "modal",
             })}
           />
@@ -107,7 +107,15 @@ export const AppStack = () => {
             options={({ route }) => ({
               headerLargeTitle: true,
               headerTitle: route.params.collection,
-              // headerBackTitle: "Back",
+              presentation: "modal",
+            })}
+          />
+          <Stack.Screen
+            name="SearchResultsScreen"
+            component={SearchResultsScreen}
+            options={({ route }) => ({
+              headerLargeTitle: true,
+              headerTitle: route.params.name,
               presentation: "modal",
             })}
           />
