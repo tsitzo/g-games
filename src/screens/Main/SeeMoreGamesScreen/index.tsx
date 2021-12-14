@@ -19,7 +19,7 @@ const SeeMoreGamesScreen: FC<ISeeMoreGamesScreenProps> = ({
   const { colors } = useTheme();
   const { games } = route.params;
   return (
-    <SafeAreaView style={{ backgroundColor: colors.modalBackground }}>
+    <SafeAreaView style={styles.page}>
       <FlatList
         style={styles.flatList}
         numColumns={3}

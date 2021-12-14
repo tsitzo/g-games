@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  page: { flex: 1 },
   flatList: { paddingHorizontal: 7.5 },
   imageWrapper: {
     flex: 1 / 3,
