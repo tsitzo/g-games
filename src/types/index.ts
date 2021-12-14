@@ -13,6 +13,9 @@ export type AppStackParams = {
   PlatformsSelectScreen: undefined;
   GameDetailsScreen: { id: number };
   SeeMoreGamesScreen: { games: Game[]; name: string };
+  SeeMoreCollectionsGamesScreen: {
+    collection: string;
+  };
 };
 
 export type Platform = {
