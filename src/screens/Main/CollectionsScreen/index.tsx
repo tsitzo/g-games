@@ -3,6 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { FC, useContext } from "react";
 import { FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import CollectionCoverCard from "../../../components/CollectionCoverCard";
+import SafeArea from "../../../components/SafeArea";
 import { CollectionsContext } from "../../../context/CollectionsContext";
 import { AppStackParams } from "../../../types";
 
@@ -22,7 +23,7 @@ const CollectionsScreen: FC<ICollectionsScreenProps> = ({ navigation }) => {
     { name: "Wishlist", games: wishlist },
   ];
   return (
-    <SafeAreaView style={styles.page}>
+    <SafeArea>
       <FlatList
         style={styles.flatList}
         numColumns={2}
@@ -44,7 +45,7 @@ const CollectionsScreen: FC<ICollectionsScreenProps> = ({ navigation }) => {
           </TouchableOpacity>
         )}
       />
-    </SafeAreaView>
+    </SafeArea>
   );
 };
 
