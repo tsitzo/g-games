@@ -1,10 +1,11 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useContext, useEffect, useRef, useState } from "react";
 import {
   View,
   ActivityIndicator,
   Dimensions,
   FlatList,
   TouchableOpacity,
+  Text,
 } from "react-native";
 import moment from "moment";
 import { RouteProp, useTheme } from "@react-navigation/native";
@@ -22,6 +23,7 @@ import { api } from "../../../api";
 import { getDevs, getPublishers } from "../../../utils";
 import VideoThumbnail from "../../../components/VideoThumbnail";
 import GridCoverImageCard from "../../../components/GridCoverImageCard";
+import { CollectionsContext } from "../../../context/CollectionsContext";
 
 interface IGameDetailsScreenProps {
   navigation: NativeStackNavigationProp<AppStackParams, "GameDetailsScreen">;
@@ -35,6 +37,14 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
   route,
   navigation,
 }) => {
+  const {
+    archiveHandler,
+    wishlistHandler,
+    backlogHandler,
+    isArchive,
+    isBacklog,
+    isWishlist,
+  } = useContext(CollectionsContext);
   const { id } = route.params;
   const bottomSheetRef = useRef<BottomSheet>(null);
 
@@ -117,6 +127,7 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
       >
         <BottomSheetScrollView
           contentContainerStyle={styles.bottomSheetScrollview}
+          showsVerticalScrollIndicator={false}
         >
           <Typography
             variant="bold"
@@ -126,6 +137,100 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
           >
             {gameDetails?.name}
           </Typography>
+
+          <Spacer y={10} />
+
+          <View style={styles.collectionButtonsRow}>
+            <TouchableOpacity
+              style={[
+                styles.collectionButton,
+                {
+                  backgroundColor: isArchive(gameDetails?.id!)
+                    ? colors.primary
+                    : colors.surface,
+                },
+              ]}
+              onPress={() =>
+                archiveHandler({
+                  id: gameDetails?.id!,
+                  cover: gameDetails?.cover,
+                  name: gameDetails?.name!,
+                })
+              }
+            >
+              <Text
+                style={[
+                  styles.collectionButtonText,
+                  {
+                    fontWeight: isArchive(gameDetails?.id!) ? "700" : "500",
+                    color: isArchive(gameDetails?.id!) ? "#fff" : colors.text,
+                  },
+                ]}
+              >
+                Archive
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[
+                styles.collectionButton,
+                {
+                  backgroundColor: isWishlist(gameDetails?.id!)
+                    ? colors.primary
+                    : colors.surface,
+                },
+              ]}
+              onPress={() =>
+                wishlistHandler({
+                  id: gameDetails?.id!,
+                  cover: gameDetails?.cover,
+                  name: gameDetails?.name!,
+                })
+              }
+            >
+              <Text
+                style={[
+                  styles.collectionButtonText,
+                  {
+                    fontWeight: isWishlist(gameDetails?.id!) ? "700" : "500",
+                    color: isWishlist(gameDetails?.id!) ? "#fff" : colors.text,
+                  },
+                ]}
+              >
+                Wishlist
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[
+                styles.collectionButton,
+                {
+                  backgroundColor: isBacklog(gameDetails?.id!)
+                    ? colors.primary
+                    : colors.surface,
+                },
+              ]}
+              onPress={() =>
+                backlogHandler({
+                  id: gameDetails?.id!,
+                  cover: gameDetails?.cover,
+                  name: gameDetails?.name!,
+                })
+              }
+            >
+              <Text
+                style={[
+                  styles.collectionButtonText,
+                  {
+                    fontWeight: isBacklog(gameDetails?.id!) ? "700" : "500",
+                    color: isBacklog(gameDetails?.id!) ? "#fff" : colors.text,
+                  },
+                ]}
+              >
+                Backlog
+              </Text>
+            </TouchableOpacity>
+          </View>
 
           <Spacer y={10} />
           <Typography color="subtext">{gameDetails?.summary}</Typography>
