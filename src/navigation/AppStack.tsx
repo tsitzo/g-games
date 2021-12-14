@@ -96,7 +96,8 @@ export const AppStack = () => {
             options={({ route }) => ({
               headerLargeTitle: true,
               headerTitle: route.params.name,
-              headerBackTitle: "Back",
+              // headerBackTitle: "Back",
+              presentation: "modal",
             })}
           />
         </>

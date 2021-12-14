@@ -21,6 +21,7 @@ import { styles } from "./styles";
 import { api } from "../../../api";
 import { getDevs, getPublishers } from "../../../utils";
 import VideoThumbnail from "../../../components/VideoThumbnail";
+import GridCoverImageCard from "../../../components/GridCoverImageCard";
 
 interface IGameDetailsScreenProps {
   navigation: NativeStackNavigationProp<AppStackParams, "GameDetailsScreen">;
@@ -85,6 +86,29 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
 
   return (
     <View style={[styles.page, { backgroundColor: colors.modalBackground }]}>
+      <View style={{ height: screenshotHeight }}>
+        <View style={styles.imagePanel}>
+          {/* <ImageBackground
+            resizeMode="cover"
+            style={styles.imageBackground}
+            source={{
+              uri:
+                gameDetails?.screenshots &&
+                `https:${gameDetails.screenshots?.[
+                  Math.floor(Math.random() * gameDetails.screenshots.length)
+                ].url?.replace("t_thumb", "t_screenshot_med")}`,
+            }}
+          />
+          <View style={styles.coverMask} /> */}
+          {gameDetails?.cover && (
+            <View style={styles.coverContainer}>
+              <View style={styles.coverWrapper}>
+                <GridCoverImageCard game={gameDetails} />
+              </View>
+            </View>
+          )}
+        </View>
+      </View>
       <BottomSheet
         snapPoints={[height - screenshotHeight, height]}
         ref={bottomSheetRef}
@@ -102,9 +126,11 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
           >
             {gameDetails?.name}
           </Typography>
+
           <Spacer y={10} />
           <Typography color="subtext">{gameDetails?.summary}</Typography>
           <Spacer y={20} />
+
           {gameDetails?.first_release_date && (
             <View style={styles.textRow}>
               <Typography color="subtext">Release Date: </Typography>
@@ -120,6 +146,17 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
               <Typography color="subtext">Genres: </Typography>
               <Typography variant="bold" style={styles.textValue}>
                 {gameDetails.genres.map((g) => g.name).join(", ")}
+              </Typography>
+            </View>
+          )}
+
+          <Spacer y={10} />
+
+          {gameDetails?.platforms && (
+            <View style={styles.textRow}>
+              <Typography color="subtext">Platforms: </Typography>
+              <Typography variant="bold" style={styles.textValue}>
+                {gameDetails.platforms.map((p) => p.name).join(", ")}
               </Typography>
             </View>
           )}
@@ -155,6 +192,10 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
           {gameDetails?.screenshots && (
             <>
               <Spacer y={20} />
+              <Typography variant="bold" color="subtext">
+                Screenshots
+              </Typography>
+              <Spacer y={20} />
 
               <FlatList
                 horizontal
@@ -183,7 +224,10 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
           {gameDetails?.videos && (
             <>
               <Spacer y={20} />
-
+              <Typography variant="bold" color="subtext">
+                Videos
+              </Typography>
+              <Spacer y={20} />
               <FlatList
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -209,7 +253,9 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
           {gameDetails?.similar_games && (
             <>
               <Spacer y={20} />
-              <Typography variant="bold">Similar Games</Typography>
+              <Typography variant="bold" color="subtext">
+                Similar Games
+              </Typography>
               <Spacer y={20} />
               <FlatList
                 showsHorizontalScrollIndicator={false}
@@ -242,7 +288,9 @@ const GameDetailsScreen: FC<IGameDetailsScreenProps> = ({
           {gameDetails?.dlcs && (
             <>
               <Spacer y={10} />
-              <Typography color="subtext">DLCs</Typography>
+              <Typography variant="bold" color="subtext">
+                DLCs
+              </Typography>
               <Spacer y={20} />
               <FlatList
                 showsHorizontalScrollIndicator={false}

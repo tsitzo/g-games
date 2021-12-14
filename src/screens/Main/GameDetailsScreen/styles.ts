@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   page: { flex: 1 },
@@ -28,9 +28,42 @@ export const styles = StyleSheet.create({
   screenshotWrapper: {
     width: 192 * 1.1,
     height: 108 * 1.1,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
   videoWrapper: {
     width: 192,
     height: 108,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
   },
+  coverContainer: { alignItems: "center", justifyContent: "center", flex: 5 },
+  coverWrapper: {
+    width: Dimensions.get("screen").width * 0.6,
+    aspectRatio: 54 / 76,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+
+    elevation: 3,
+  },
+  imagePanel: { flex: 1 },
 });

@@ -1,14 +1,7 @@
-import { RouteProp } from "@react-navigation/native";
+import { RouteProp, useTheme } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { FC } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  SafeAreaView,
-  TouchableOpacity,
-} from "react-native";
-import CoverImageCard from "../../../components/CoverImageCard";
+import { FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import GridCoverImageCard from "../../../components/GridCoverImageCard";
 import { AppStackParams } from "../../../types";
 
@@ -23,9 +16,10 @@ const SeeMoreGamesScreen: FC<ISeeMoreGamesScreenProps> = ({
   route,
   navigation,
 }) => {
+  const { colors } = useTheme();
   const { games } = route.params;
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: colors.modalBackground }}>
       <FlatList
         style={styles.flatList}
         numColumns={3}
