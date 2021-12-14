@@ -91,3 +91,9 @@ export type Game = {
   aggregated_rating?: number;
   videos?: Video[];
 };
+
+export type CollectionGame = {
+  id: number;
+  cover?: Cover;
+  name: string;
+};
