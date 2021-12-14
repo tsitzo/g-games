@@ -17,6 +17,7 @@ import Typography from "../../../components/Typography";
 import { ThemeContext } from "../../../context/ThemeContext";
 import { AppStackParams } from "../../../types";
 import { styles } from "./styles";
+import SafeArea from "../../../components/SafeArea";
 
 interface ISettingsScreenProps {
   navigation: NativeStackNavigationProp<AppStackParams, "AppTabs">;
@@ -26,7 +27,7 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
   const { isDarkTheme, switchTheme } = useContext(ThemeContext);
   const { colors } = useTheme();
   return (
-    <SafeAreaView style={styles.page}>
+    <SafeArea>
       <ScrollView style={styles.pageContent}>
         <Spacer y={30} />
         <View>
@@ -112,7 +113,7 @@ const SettingsScreen: FC<ISettingsScreenProps> = ({ navigation }) => {
           </Typography>
         </TouchableOpacity>
       </ScrollView>
-    </SafeAreaView>
+    </SafeArea>
   );
 };
 

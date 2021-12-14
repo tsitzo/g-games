@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
 
     elevation: 3,
   },
-  imagePanel: { flex: 1 },
+  imagePanel: { flex: 1, zIndex: -1 },
   collectionButton: {
     paddingHorizontal: 10,
     paddingVertical: 5,

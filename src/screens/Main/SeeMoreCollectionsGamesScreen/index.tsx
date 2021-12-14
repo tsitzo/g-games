@@ -8,6 +8,7 @@ import { CollectionsContext } from "../../../context/CollectionsContext";
 import { AppStackParams } from "../../../types";
 
 import { styles } from "./styles";
+import SafeArea from "../../../components/SafeArea";
 
 interface ISeeMoreCollectionsGamesScreenProps {
   navigation: NativeStackNavigationProp<
@@ -37,7 +38,7 @@ const SeeMoreCollectionsGamesScreen: FC<ISeeMoreCollectionsGamesScreenProps> =
     };
 
     return (
-      <SafeAreaView style={styles.page}>
+      <SafeArea>
         <FlatList
           style={styles.flatList}
           numColumns={3}
@@ -55,7 +56,7 @@ const SeeMoreCollectionsGamesScreen: FC<ISeeMoreCollectionsGamesScreenProps> =
             </TouchableOpacity>
           )}
         />
-      </SafeAreaView>
+      </SafeArea>
     );
   };
 

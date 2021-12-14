@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
+  Platform,
+  StatusBar,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -23,6 +25,8 @@ import Typography from "../../../components/Typography";
 import CoverImageCard from "../../../components/CoverImageCard";
 import Spacer from "../../../components/Spacer";
 import ArtworkImageCard from "../../../components/ArtworkImageCard";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SafeArea from "../../../components/SafeArea";
 
 interface IHomeScreenProps {
   navigation: NativeStackNavigationProp<AppStackParams, "AppTabs">;
@@ -36,6 +40,8 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
   const [reccomendedGames, setReccomendedGames] = useState<Game[] | null>(null);
   const [featuredGames, setFeaturedGames] = useState<Game[] | null>(null);
   const [upcomingGames, setUpcomingGames] = useState<Game[] | null>(null);
+
+  const insets = useSafeAreaInsets();
 
   const getReccomendedGames = async (platforms: string, genres: string) => {
     setIsLoading(true);
@@ -106,26 +112,26 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
 
   if (isLoading) {
     return (
-      <SafeAreaView style={styles.page}>
+      <SafeArea>
         <View style={styles.centeredPage}>
           <ActivityIndicator size={40} color={colors.primary} />
         </View>
-      </SafeAreaView>
+      </SafeArea>
     );
   }
 
   if (!isLoading && error) {
     return (
-      <SafeAreaView style={styles.page}>
+      <SafeArea>
         <View style={styles.centeredPage}>
           <Typography>Error getting data.</Typography>
         </View>
-      </SafeAreaView>
+      </SafeArea>
     );
   }
 
   return (
-    <SafeAreaView style={styles.page}>
+    <SafeArea>
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={{ paddingBottom: 20 }}
@@ -257,7 +263,7 @@ const HomeScreen: FC<IHomeScreenProps> = ({ navigation }) => {
           )}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </SafeArea>
   );
 };
 

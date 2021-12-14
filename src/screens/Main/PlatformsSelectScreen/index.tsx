@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { SafeAreaView, FlatList } from "react-native";
 
 import PlatformSelectionTile from "../../../components/PlatformSelectionTile";
+import SafeArea from "../../../components/SafeArea";
 import { SettingsContext } from "../../../context/SettingsContext";
 
 import { styles } from "./styles";
@@ -10,7 +11,7 @@ const PlatformsSelectScreen = () => {
   const { platforms, selectedPlatforms } = useContext(SettingsContext);
 
   return (
-    <SafeAreaView style={styles.page}>
+    <SafeArea>
       <FlatList
         data={platforms
           .sort((a, b) => a.name.localeCompare(b.name))
@@ -21,7 +22,7 @@ const PlatformsSelectScreen = () => {
         renderItem={({ item }) => <PlatformSelectionTile platform={item} />}
         keyExtractor={(item) => item.id.toString()}
       />
-    </SafeAreaView>
+    </SafeArea>
   );
 };
 
