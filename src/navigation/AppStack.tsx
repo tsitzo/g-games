@@ -115,7 +115,7 @@ export const AppStack = () => {
             component={SearchResultsScreen}
             options={({ route }) => ({
               headerLargeTitle: true,
-              headerTitle: route.params.name,
+              headerTitle: route.params.query,
               presentation: "modal",
             })}
           />

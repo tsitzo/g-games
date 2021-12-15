@@ -18,7 +18,6 @@ export type AppStackParams = {
     collection: string;
   };
   SearchResultsScreen: {
-    name: string;
     query: string;
   };
 };
